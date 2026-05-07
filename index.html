@@ -40,7 +40,7 @@
             }
         }
 
-        /* Card style - BIGGER AND WIDER */
+        /* Card style */
         .card {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
@@ -122,7 +122,7 @@
             transform: translateY(0);
         }
 
-        /* Picture grid - BIGGER PICTURES */
+        /* Picture grid */
         .grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -162,7 +162,7 @@
             font-weight: 600;
         }
 
-        /* Candle - BIGGER */
+        /* Candle */
         .candle-box {
             background: linear-gradient(135deg, #fff5f7, #ffe8ee);
             border-radius: 80px;
@@ -171,6 +171,7 @@
             margin: 30px 0;
             transition: all 0.3s ease;
             border: 3px solid #ffd0dc;
+            position: relative;
         }
 
         .candle-box:hover {
@@ -187,7 +188,159 @@
             font-size: 100px;
         }
 
-        /* Letter - BIGGER TEXT */
+        /* Countdown Overlay */
+        .countdown-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .countdown-number {
+            font-size: 150px;
+            font-weight: bold;
+            color: #ff85a1;
+            text-shadow: 0 0 30px #ff6b8f, 0 0 60px #ff85a1;
+            animation: pulse 1s ease infinite;
+            font-family: monospace;
+        }
+
+        .countdown-text {
+            font-size: 30px;
+            color: white;
+            margin-top: 20px;
+            letter-spacing: 2px;
+        }
+
+        /* Happy Birthday Overlay */
+        .happy-birthday-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff6b8f, #ff85a1, #ffb7c5);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            animation: zoomIn 0.5s ease;
+        }
+
+        .happy-birthday-text {
+            font-size: 60px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 5px 5px 20px rgba(0,0,0,0.3);
+            text-align: center;
+            padding: 20px;
+            animation: bounce 0.8s ease;
+        }
+
+        .happy-birthday-subtext {
+            font-size: 30px;
+            color: #fff0f5;
+            margin-top: 20px;
+            animation: fadeInUp 0.6s ease 0.3s both;
+        }
+
+        /* Image Preview Modal */
+        .image-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 3000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            animation: fadeIn 0.3s ease;
+            cursor: pointer;
+        }
+
+        .image-modal img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 30px;
+            box-shadow: 0 0 50px rgba(255, 105, 180, 0.5);
+            animation: zoomIn 0.4s ease;
+            border: 5px solid white;
+        }
+
+        .image-modal-caption {
+            color: white;
+            font-size: 24px;
+            margin-top: 25px;
+            text-align: center;
+            background: rgba(255, 105, 180, 0.3);
+            padding: 12px 30px;
+            border-radius: 60px;
+            backdrop-filter: blur(10px);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 50px;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+        }
+
+        .close-modal:hover {
+            transform: scale(1.1);
+            background: rgba(255,105,180,0.5);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.9; }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Letter */
         .letter {
             text-align: left;
             line-height: 1.9;
@@ -259,7 +412,6 @@
             z-index: 1000;
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
             .card {
                 padding: 30px 20px;
@@ -289,15 +441,24 @@
             .candle-box {
                 padding: 30px;
             }
-        }
 
-        /* Decorative corner elements */
-        .corner-decoration {
-            position: fixed;
-            font-size: 30px;
-            opacity: 0.3;
-            pointer-events: none;
-            z-index: 1;
+            .countdown-number {
+                font-size: 80px;
+            }
+
+            .happy-birthday-text {
+                font-size: 35px;
+            }
+
+            .image-modal-caption {
+                font-size: 18px;
+            }
+
+            .close-modal {
+                top: 20px;
+                right: 20px;
+                font-size: 35px;
+            }
         }
     </style>
 </head>
@@ -327,7 +488,7 @@
 <!-- PICTURE SCREEN -->
 <div id="pictureScreen" class="card hidden">
     <h1>📸 Our Beautiful Memories</h1>
-    <p>Every picture tells our story ✨</p>
+    <p>Click on any picture to see it bigger ✨</p>
     <div id="pictureGrid" class="grid"></div>
     <button id="nextToLetterBtn">Next → 💌</button>
 </div>
@@ -367,6 +528,7 @@
     const finalScreen = document.getElementById('finalScreen');
     
     let candleBlown = false;
+    let celebrationTriggered = false;
     
     // Create floating hearts continuously
     function createFloatingHeart() {
@@ -384,7 +546,6 @@
         }, 9000);
     }
     
-    // Create hearts every 1.5 seconds
     setInterval(createFloatingHeart, 1500);
     
     // Create shooting star effect
@@ -423,10 +584,104 @@
         }
     }
     
-    // Add click sparkles to whole page
     document.addEventListener('click', (e) => {
-        createSparkles(e.clientX, e.clientY);
+        // Don't create sparkles if clicking on modal
+        if (!document.querySelector('.image-modal')) {
+            createSparkles(e.clientX, e.clientY);
+        }
     });
+    
+    // IMAGE PREVIEW MODAL FUNCTION
+    function showImagePreview(imageSrc, caption) {
+        const modal = document.createElement('div');
+        modal.className = 'image-modal';
+        modal.innerHTML = `
+            <div class="close-modal">✕</div>
+            <img src="${imageSrc}" alt="${caption}">
+            <div class="image-modal-caption">${caption}</div>
+        `;
+        document.body.appendChild(modal);
+        
+        // Close on click anywhere
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal || e.target.classList.contains('close-modal')) {
+                modal.remove();
+            }
+        });
+        
+        // Close on escape key
+        const closeOnEsc = (e) => {
+            if (e.key === 'Escape') {
+                modal.remove();
+                document.removeEventListener('keydown', closeOnEsc);
+            }
+        };
+        document.addEventListener('keydown', closeOnEsc);
+    }
+    
+    // COUNTDOWN FUNCTION
+    function startCountdown(callback) {
+        let count = 3;
+        const overlay = document.createElement('div');
+        overlay.className = 'countdown-overlay';
+        overlay.innerHTML = `
+            <div class="countdown-number">${count}</div>
+            <div class="countdown-text">Get ready...</div>
+        `;
+        document.body.appendChild(overlay);
+        
+        const countdownNumber = overlay.querySelector('.countdown-number');
+        const countdownText = overlay.querySelector('.countdown-text');
+        
+        const interval = setInterval(() => {
+            count--;
+            if (count > 0) {
+                countdownNumber.textContent = count;
+                countdownNumber.style.animation = 'none';
+                setTimeout(() => {
+                    countdownNumber.style.animation = 'pulse 1s ease infinite';
+                }, 10);
+                
+                if (count === 2) countdownText.textContent = 'Almost there...';
+                if (count === 1) countdownText.textContent = 'Here we go! 🎉';
+            } else {
+                clearInterval(interval);
+                overlay.remove();
+                if (callback) callback();
+            }
+        }, 1000);
+    }
+    
+    // HAPPY BIRTHDAY CELEBRATION
+    function showHappyBirthday() {
+        const overlay = document.createElement('div');
+        overlay.className = 'happy-birthday-overlay';
+        overlay.innerHTML = `
+            <div class="happy-birthday-text">🎉 HAPPY BIRTHDAY! 🎉</div>
+            <div class="happy-birthday-subtext">You deserve all the happiness in the world! 💗</div>
+        `;
+        document.body.appendChild(overlay);
+        
+        startConfetti();
+        
+        for (let i = 0; i < 5; i++) {
+            setTimeout(() => createShootingStar(), i * 300);
+        }
+        
+        setTimeout(() => {
+            overlay.remove();
+            showScreen(pictureScreen);
+            renderPictures();
+        }, 4000);
+    }
+    
+    function handleCakeClick() {
+        if (celebrationTriggered) return;
+        celebrationTriggered = true;
+        startCountdown(() => {
+            showHappyBirthday();
+        });
+    }
     
     // Confetti setup
     const canvas = document.getElementById('confettiCanvas');
@@ -462,7 +717,7 @@
             };
         }
         
-        for (let i = 0; i < 250; i++) {
+        for (let i = 0; i < 300; i++) {
             particles.push(createParticle());
         }
         
@@ -487,7 +742,6 @@
         draw();
     }
     
-    // Show a screen and hide others
     function showScreen(screenToShow) {
         const screens = [unlockScreen, candleScreen, pictureScreen, letterScreen, finalScreen];
         screens.forEach(screen => {
@@ -503,7 +757,6 @@
         });
     }
     
-    // Render 9 pictures
     function renderPictures() {
         const grid = document.getElementById('pictureGrid');
         grid.innerHTML = '';
@@ -531,25 +784,22 @@
                 createShootingStar();
                 const rect = card.getBoundingClientRect();
                 createSparkles(rect.left + rect.width/2, rect.top + rect.height/2);
+                // Show image preview modal
+                showImagePreview(pic.img, pic.caption);
             });
             grid.appendChild(card);
         });
     }
     
-    // Blow candle function
     function blowCandle() {
         if (candleBlown) return;
         candleBlown = true;
         document.getElementById('candle').innerHTML = '💨✨';
-        startConfetti();
-        createShootingStar();
-        setTimeout(() => {
-            showScreen(pictureScreen);
-            renderPictures();
-        }, 1000);
+        startCountdown(() => {
+            showHappyBirthday();
+        });
     }
     
-    // Unlock logic
     document.getElementById('unlockBtn').addEventListener('click', () => {
         const input = document.getElementById('birthdateInput').value;
         if (input === SIS_BIRTHDAY) {
@@ -560,11 +810,17 @@
         }
     });
     
-    // Blow button
     document.getElementById('blowBtn').addEventListener('click', blowCandle);
     document.getElementById('candleBox').addEventListener('click', blowCandle);
     
-    // Next buttons
+    const cakeElement = document.querySelector('.cake');
+    if (cakeElement) {
+        cakeElement.addEventListener('click', (e) => {
+            e.stopPropagation();
+            blowCandle();
+        });
+    }
+    
     document.getElementById('nextToLetterBtn').addEventListener('click', () => {
         showScreen(letterScreen);
         createShootingStar();
@@ -573,28 +829,24 @@
     document.getElementById('nextToFinalBtn').addEventListener('click', () => {
         showScreen(finalScreen);
         createShootingStar();
-        startConfetti();
     });
     
-    // Restart button
     document.getElementById('restartBtn').addEventListener('click', () => {
         candleBlown = false;
+        celebrationTriggered = false;
         document.getElementById('candle').innerHTML = '🕯️🔥';
         document.getElementById('birthdateInput').value = '';
         showScreen(unlockScreen);
     });
     
-    // Enter key support
     document.getElementById('birthdateInput').addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             document.getElementById('unlockBtn').click();
         }
     });
     
-    // Initialize
     resizeCanvas();
     
-    // Create initial hearts
     for (let i = 0; i < 8; i++) {
         setTimeout(createFloatingHeart, i * 400);
     }
