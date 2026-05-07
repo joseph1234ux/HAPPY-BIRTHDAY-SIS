@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Happy Birthday, Sis! 🎂✨</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #ffe6f0 0%, #ffb6c7 50%, #ff9eb5 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated background hearts */
+        .floating-heart {
+            position: fixed;
+            font-size: 20px;
+            pointer-events: none;
+            animation: floatUp 8s linear forwards;
+            z-index: 999;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-20vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Card style - BIGGER AND WIDER */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 50px 40px;
+            max-width: 1200px;
+            width: 95%;
+            margin: 20px auto;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(255, 105, 180, 0.3);
+            border: 2px solid rgba(255, 192, 203, 0.5);
+            animation: fadeInUp 0.6s ease-out;
+            position: relative;
+            z-index: 10;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #d43f6b;
+            margin-bottom: 20px;
+            font-size: 3rem;
+            text-shadow: 2px 2px 10px rgba(255, 105, 180, 0.2);
+        }
+
+        p {
+            color: #b36b84;
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+        }
+
+        input {
+            padding: 16px 28px;
+            font-size: 18px;
+            border: 2px solid #ffb7c5;
+            border-radius: 60px;
+            width: 70%;
+            margin-bottom: 25px;
+            text-align: center;
+            outline: none;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        input:focus {
+            border-color: #ff6b8f;
+            box-shadow: 0 0 15px rgba(255, 107, 143, 0.3);
+            transform: scale(1.02);
+        }
+
+        button {
+            background: linear-gradient(135deg, #ff85a1, #ff6b8f);
+            border: none;
+            padding: 14px 40px;
+            border-radius: 60px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+        }
+
+        button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.5);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* Picture grid - BIGGER PICTURES */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .picture-card {
+            background: linear-gradient(135deg, #fff0f5, #ffe0e7);
+            border-radius: 25px;
+            overflow: hidden;
+            border: 3px solid #ffc0d0;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .picture-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(255, 105, 180, 0.3);
+        }
+
+        .picture-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .picture-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .picture-card p {
+            padding: 15px;
+            font-size: 14px;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        /* Candle - BIGGER */
+        .candle-box {
+            background: linear-gradient(135deg, #fff5f7, #ffe8ee);
+            border-radius: 80px;
+            padding: 60px;
+            cursor: pointer;
+            margin: 30px 0;
+            transition: all 0.3s ease;
+            border: 3px solid #ffd0dc;
+        }
+
+        .candle-box:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.2);
+        }
+
+        .candle {
+            font-size: 100px;
+            transition: all 0.2s;
+        }
+
+        .cake {
+            font-size: 100px;
+        }
+
+        /* Letter - BIGGER TEXT */
+        .letter {
+            text-align: left;
+            line-height: 1.9;
+            color: #5a3e4a;
+            margin: 30px 0;
+            font-size: 17px;
+        }
+
+        /* Shooting star */
+        .shooting-star {
+            position: fixed;
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(90deg, white, rgba(255,255,255,0));
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1001;
+            animation: shootStar 1.5s ease-out forwards;
+        }
+
+        @keyframes shootStar {
+            0% {
+                transform: translateX(0) translateY(0) rotate(-35deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-500px) translateY(300px) rotate(-35deg);
+                opacity: 0;
+            }
+        }
+
+        /* Sparkle */
+        .sparkle {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: #ffd700;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1002;
+            animation: sparklePop 0.8s ease-out forwards;
+            box-shadow: 0 0 15px #ffd700;
+        }
+
+        @keyframes sparklePop {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        /* Hidden class */
+        .hidden {
+            display: none;
+        }
+
+        /* Confetti canvas */
+        #confettiCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .card {
+                padding: 30px 20px;
+                width: 100%;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .grid {
+                gap: 15px;
+            }
+            
+            .picture-card img {
+                height: 120px;
+            }
+            
+            .candle {
+                font-size: 60px;
+            }
+            
+            .cake {
+                font-size: 60px;
+            }
+            
+            .candle-box {
+                padding: 30px;
+            }
+        }
+
+        /* Decorative corner elements */
+        .corner-decoration {
+            position: fixed;
+            font-size: 30px;
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+
+<!-- UNLOCK SCREEN -->
+<div id="unlockScreen" class="card">
+    <h1>🎁 Special Surprise 🎁</h1>
+    <p>Enter your birthdate to unlock your gift!</p>
+    <input type="text" id="birthdateInput" placeholder="9 May 2004">
+    <br>
+    <button id="unlockBtn">Unlock My Gift ✨</button>
+    <p style="font-size: 14px; margin-top: 25px;">Made with ❤️ by your brother</p>
+</div>
+
+<!-- CANDLE SCREEN -->
+<div id="candleScreen" class="card hidden">
+    <h1>Make a Wish! ✨</h1>
+    <p>Blow out the candle and make this year magical!</p>
+    <div id="candleBox" class="candle-box">
+        <div id="candle" class="candle">🕯️🔥</div>
+        <div class="cake">🎂</div>
+    </div>
+    <button id="blowBtn">Blow the Candle 💨</button>
+</div>
+
+<!-- PICTURE SCREEN -->
+<div id="pictureScreen" class="card hidden">
+    <h1>📸 Our Beautiful Memories</h1>
+    <p>Every picture tells our story ✨</p>
+    <div id="pictureGrid" class="grid"></div>
+    <button id="nextToLetterBtn">Next → 💌</button>
+</div>
+
+<!-- LETTER SCREEN -->
+<div id="letterScreen" class="card hidden">
+    <h1>Happy Birthday, My Dear Sister 💗</h1>
+    <div class="letter">
+        <p>✨ First of all, I just want to thank you for your love, care, and all the little moments that make my days brighter. You've been such a blessing in my life.</p>
+        <p>💕 I know I'm not the best at writing long sweet messages, but please know that my heart speaks louder than words ever could. You mean the world to me.</p>
+        <p>🌟 No matter what happens, my love for you will never fade. It only grows deeper with every smile, every memory, and every moment we share.</p>
+        <p style="font-weight: bold; color: #d43f6b; text-align: center; font-size: 1.3rem;">I love you sooo muchhhh ❤️</p>
+        <p style="text-align: right; margin-top: 25px; font-style: italic; font-size: 1.1rem;">Your little bro 🤟💗</p>
+    </div>
+    <button id="nextToFinalBtn">Next → 💕</button>
+</div>
+
+<!-- FINAL SCREEN -->
+<div id="finalScreen" class="card hidden">
+    <h1>You Are Loved! 💖</h1>
+    <p style="font-size: 1.3rem;">Every single day with you feels like a blessing. You make my heart full and my life brighter. Thank you for being YOU ❤️</p>
+    <div style="font-size: 80px; margin: 30px 0;">🎉🎂🎁</div>
+    <button id="restartBtn">Start Over 🔄</button>
+</div>
+
+<canvas id="confettiCanvas"></canvas>
+
+<script>
+    // Config
+    const SIS_BIRTHDAY = "9 May 2004";
+    
+    // Get all screens
+    const unlockScreen = document.getElementById('unlockScreen');
+    const candleScreen = document.getElementById('candleScreen');
+    const pictureScreen = document.getElementById('pictureScreen');
+    const letterScreen = document.getElementById('letterScreen');
+    const finalScreen = document.getElementById('finalScreen');
+    
+    let candleBlown = false;
+    
+    // Create floating hearts continuously
+    function createFloatingHeart() {
+        const heart = document.createElement('div');
+        heart.className = 'floating-heart';
+        heart.innerHTML = ['💗', '💖', '💕', '💓', '🌸', '✨', '⭐', '💝', '💘'][Math.floor(Math.random() * 9)];
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.fontSize = (Math.random() * 25 + 15) + 'px';
+        heart.style.animationDuration = (Math.random() * 5 + 6) + 's';
+        heart.style.animationDelay = Math.random() * 3 + 's';
+        document.body.appendChild(heart);
+        
+        setTimeout(() => {
+            heart.remove();
+        }, 9000);
+    }
+    
+    // Create hearts every 1.5 seconds
+    setInterval(createFloatingHeart, 1500);
+    
+    // Create shooting star effect
+    function createShootingStar() {
+        for (let s = 0; s < 2; s++) {
+            setTimeout(() => {
+                const star = document.createElement('div');
+                star.className = 'shooting-star';
+                star.style.top = Math.random() * 60 + '%';
+                star.style.left = '100%';
+                star.style.width = (Math.random() * 100 + 80) + 'px';
+                document.body.appendChild(star);
+                
+                setTimeout(() => {
+                    star.remove();
+                }, 1500);
+            }, s * 300);
+        }
+    }
+    
+    // Create sparkles at click position
+    function createSparkles(x, y) {
+        for (let i = 0; i < 20; i++) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = (x + (Math.random() - 0.5) * 80) + 'px';
+            sparkle.style.top = (y + (Math.random() - 0.5) * 80) + 'px';
+            sparkle.style.width = (Math.random() * 8 + 4) + 'px';
+            sparkle.style.height = sparkle.style.width;
+            sparkle.style.background = ['#ffd700', '#ff85a1', '#ffb7c5', '#ffffff', '#ff69b4'][Math.floor(Math.random() * 5)];
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 800);
+        }
+    }
+    
+    // Add click sparkles to whole page
+    document.addEventListener('click', (e) => {
+        createSparkles(e.clientX, e.clientY);
+    });
+    
+    // Confetti setup
+    const canvas = document.getElementById('confettiCanvas');
+    let ctx = canvas.getContext('2d');
+    let animationId = null;
+    let particles = [];
+    
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    
+    function startConfetti() {
+        if (animationId) cancelAnimationFrame(animationId);
+        particles = [];
+        const duration = 5000;
+        const endTime = Date.now() + duration;
+        
+        function randomRange(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+        
+        function createParticle() {
+            return {
+                x: Math.random() * canvas.width,
+                y: canvas.height,
+                size: randomRange(8, 16),
+                speedY: randomRange(-12, -5),
+                speedX: randomRange(-4, 4),
+                color: `hsl(${randomRange(330, 360)}, 80%, 65%)`,
+                gravity: 0.25
+            };
+        }
+        
+        for (let i = 0; i < 250; i++) {
+            particles.push(createParticle());
+        }
+        
+        function draw() {
+            if (Date.now() > endTime) {
+                cancelAnimationFrame(animationId);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                animationId = null;
+                return;
+            }
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                let p = particles[i];
+                p.x += p.speedX;
+                p.y += p.speedY;
+                p.speedY += p.gravity;
+                ctx.fillStyle = p.color;
+                ctx.fillRect(p.x, p.y, p.size, p.size);
+            }
+            animationId = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+    
+    // Show a screen and hide others
+    function showScreen(screenToShow) {
+        const screens = [unlockScreen, candleScreen, pictureScreen, letterScreen, finalScreen];
+        screens.forEach(screen => {
+            if (screen === screenToShow) {
+                screen.classList.remove('hidden');
+                screen.style.animation = 'none';
+                setTimeout(() => {
+                    screen.style.animation = 'fadeInUp 0.6s ease-out';
+                }, 10);
+            } else {
+                screen.classList.add('hidden');
+            }
+        });
+    }
+    
+    // Render 9 pictures
+    function renderPictures() {
+        const grid = document.getElementById('pictureGrid');
+        grid.innerHTML = '';
+        
+        const pictures = [
+            { img: 'pictures/nice.jpeg', caption: 'Childhood memories 👧🧒' },
+            { img: 'pictures/lovely.jpeg', caption: 'Silly faces 😜' },
+            { img: 'pictures/pook.jpeg', caption: 'Best friends forever 💕' },
+            { img: 'pictures/wow.jpeg', caption: 'Growing together 🌸' },
+            { img: 'pictures/64574u74.jpeg', caption: 'Laughing until we cry 😂' },
+            { img: 'pictures/babe.jpeg', caption: 'Inside jokes 🤫' },
+            { img: 'pictures/perfect.jpeg', caption: 'Through good and bad 💪' },
+            { img: 'pictures/back.jpeg', caption: 'You have my back 🛡️' },
+            { img: 'pictures/glass.jpeg', caption: 'I love you, sis! ❤️' }
+        ];
+        
+        pictures.forEach((pic, idx) => {
+            const card = document.createElement('div');
+            card.className = 'picture-card';
+            card.innerHTML = `
+                <img src="${pic.img}" alt="${pic.caption}">
+                <p>${pic.caption}</p>
+            `;
+            card.addEventListener('click', () => {
+                createShootingStar();
+                const rect = card.getBoundingClientRect();
+                createSparkles(rect.left + rect.width/2, rect.top + rect.height/2);
+            });
+            grid.appendChild(card);
+        });
+    }
+    
+    // Blow candle function
+    function blowCandle() {
+        if (candleBlown) return;
+        candleBlown = true;
+        document.getElementById('candle').innerHTML = '💨✨';
+        startConfetti();
+        createShootingStar();
+        setTimeout(() => {
+            showScreen(pictureScreen);
+            renderPictures();
+        }, 1000);
+    }
+    
+    // Unlock logic
+    document.getElementById('unlockBtn').addEventListener('click', () => {
+        const input = document.getElementById('birthdateInput').value;
+        if (input === SIS_BIRTHDAY) {
+            showScreen(candleScreen);
+            createShootingStar();
+        } else {
+            alert('❌ Wrong date! Try again sis ❤️');
+        }
+    });
+    
+    // Blow button
+    document.getElementById('blowBtn').addEventListener('click', blowCandle);
+    document.getElementById('candleBox').addEventListener('click', blowCandle);
+    
+    // Next buttons
+    document.getElementById('nextToLetterBtn').addEventListener('click', () => {
+        showScreen(letterScreen);
+        createShootingStar();
+    });
+    
+    document.getElementById('nextToFinalBtn').addEventListener('click', () => {
+        showScreen(finalScreen);
+        createShootingStar();
+        startConfetti();
+    });
+    
+    // Restart button
+    document.getElementById('restartBtn').addEventListener('click', () => {
+        candleBlown = false;
+        document.getElementById('candle').innerHTML = '🕯️🔥';
+        document.getElementById('birthdateInput').value = '';
+        showScreen(unlockScreen);
+    });
+    
+    // Enter key support
+    document.getElementById('birthdateInput').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            document.getElementById('unlockBtn').click();
+        }
+    });
+    
+    // Initialize
+    resizeCanvas();
+    
+    // Create initial hearts
+    for (let i = 0; i < 8; i++) {
+        setTimeout(createFloatingHeart, i * 400);
+    }
+</script>
+
+</body>
+</html>
